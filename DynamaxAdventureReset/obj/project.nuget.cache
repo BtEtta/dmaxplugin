@@ -1,10 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "vep99dikuuxarX3rOSJ/ETHg8wIPc03n3oTwQksD0lGsuKzSefkiNNmeQ2Aru7lt/gp7COB1Qefv/XYTRgPyJQ==",
+  "dgSpecHash": "yF/IslDrrS3crQap8d5T57MYa0u2z0uNrHQHm/1OuOPnPmBtigrpbJAX8OyPRSZ5SH4uOgxTHGWmpHRI9anEDg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\angel\\Documents\\GitHub\\dmaxplugin\\DynamaxAdventureReset\\DynamaxAdventureReset.csproj",
+  "projectFilePath": "D:\\Homebrew\\Save Editors\\PKHeX\\##Compile\\dmaxplugin\\DynamaxAdventureReset\\DynamaxAdventureReset.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\angel\\.nuget\\packages\\pkhex.core\\20.11.28\\pkhex.core.20.11.28.nupkg.sha512"
+    "C:\\Users\\BtEtta\\.nuget\\packages\\indexrange\\1.0.0\\indexrange.1.0.0.nupkg.sha512",
+    "C:\\Users\\BtEtta\\.nuget\\packages\\pkhex.core\\22.2.22\\pkhex.core.22.2.22.nupkg.sha512",
+    "C:\\Users\\BtEtta\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\BtEtta\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\BtEtta\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.3\\system.runtime.compilerservices.unsafe.4.5.3.nupkg.sha512",
+    "C:\\Users\\BtEtta\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

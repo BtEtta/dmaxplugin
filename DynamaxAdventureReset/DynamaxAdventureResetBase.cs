@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using PKHeX.Core;
-using PKHeX.WinForms;
 using static PKHeX.Core.SCBlockUtil;
 using System.IO;
 
@@ -19,8 +18,9 @@ namespace DynamaxAdventureReset
         public IPKMView PKMEditor { get; private set; } = null!;
         Settings settings = new Settings();
 
+        private ToolStripMenuItem ctrl;
 
-        string VersionNum = "1.1.3.0";
+        string VersionNum = "1.3.0.0";
         public void Initialize(params object[] args)
         {
             Console.WriteLine($"Loading {Name}...");
@@ -66,76 +66,73 @@ namespace DynamaxAdventureReset
 
         private void AddPluginControl(ToolStripDropDownItem tools)
         {
-            var ctrl = new ToolStripMenuItem(Name);
+            ctrl = new ToolStripMenuItem(Name);
             tools.DropDownItems.Add(ctrl);
 
+            var mainBTN = new ToolStripMenuItem($"Base Game");
+            if (SaveFileEditor.SAV.Version == GameVersion.SW)
+            {
+                mainBTN.Image = Properties.Resources.sword;
+            }
+            else if (SaveFileEditor.SAV.Version == GameVersion.SH)
+            {
+                mainBTN.Image = Properties.Resources.shield;
+            }
+
+
+            var main_worldevents = new ToolStripMenuItem($"Edit World events");
+            var ioa_worldevents = new ToolStripMenuItem($"Edit World events");
+            var ct_worldevents = new ToolStripMenuItem($"Edit World events");
+
+            var crownBTN = new ToolStripMenuItem($"Crown Tundra", Properties.Resources.crown);
+            var armorBTN = new ToolStripMenuItem($"Isle of Armor", Properties.Resources.armor);
+
+
+            var mlBTN = new ToolStripMenuItem($"Edit Max Lair");
+            var regiBTN = new ToolStripMenuItem($"Edit Regis");
+            var sojBTN = new ToolStripMenuItem($"Edit Swords of Justice");
+
+
+            var wc8BTN = new ToolStripMenuItem("Convert Wondercard");
+
+            var curryBTN = new ToolStripMenuItem("Edit Currydex/Pokecamp");
+
+            var hlpBTN = new ToolStripMenuItem($"Help");
+
+            main_worldevents.Click += (s, e) => main_worldeventsBTN_Click(s, e);
+
+            ioa_worldevents.Click += (s, e) => ioa_worldeventsBTN_Click(s, e);
+
+            mlBTN.Click += (s, e) => mlBTN_Click(s, e);
+            regiBTN.Click += (s, e) => regiBTN_Click(s, e);
+            sojBTN.Click += (s, e) => sojBTN_Click(s, e);
+            ct_worldevents.Click += (s, e) => ct_worldeventsBTN_Click(s, e);
+
+            curryBTN.Click += (s, e) => curryBTN_Click(s, e);
+            wc8BTN.Click += (s, e) => wc8BTN_Click(s, e);
+
+            hlpBTN.Click += (s, e) => hlpBTN_Click(s, e);
+
+            crownBTN.DropDownItems.Add(mlBTN);
+            crownBTN.DropDownItems.Add(regiBTN);
+            crownBTN.DropDownItems.Add(sojBTN);
+
+            mainBTN.DropDownItems.Add(main_worldevents);
+            armorBTN.DropDownItems.Add(ioa_worldevents);
+            crownBTN.DropDownItems.Add(ct_worldevents);
+
+            ctrl.DropDownItems.Add(mainBTN);
+            ctrl.DropDownItems.Add(armorBTN);
+            ctrl.DropDownItems.Add(crownBTN);
+            ctrl.DropDownItems.Add(new ToolStripSeparator());
+            ctrl.DropDownItems.Add(curryBTN);
+            ctrl.DropDownItems.Add(wc8BTN);
+            ctrl.DropDownItems.Add(new ToolStripSeparator());
+            ctrl.DropDownItems.Add(hlpBTN);
+            Console.WriteLine($"{Name} added menu items.");
             if (SaveFileEditor.SAV.Version == GameVersion.SW || SaveFileEditor.SAV.Version == GameVersion.SH)
-            { 
-                var mainBTN = new ToolStripMenuItem($"Base Game");
-                if (SaveFileEditor.SAV.Version == GameVersion.SW)
-                {
-                    mainBTN.Image = Properties.Resources.sword;
-                }
-                else if (SaveFileEditor.SAV.Version == GameVersion.SH)
-                {
-                    mainBTN.Image = Properties.Resources.shield;
-                }
-
-
-                var main_worldevents = new ToolStripMenuItem($"Edit World events");
-                var ioa_worldevents = new ToolStripMenuItem($"Edit World events");
-                var ct_worldevents = new ToolStripMenuItem($"Edit World events");
-
-                var crownBTN = new ToolStripMenuItem($"Crown Tundra", Properties.Resources.crown);
-                var armorBTN = new ToolStripMenuItem($"Isle of Armor", Properties.Resources.armor);
-
-
-                var mlBTN = new ToolStripMenuItem($"Edit Max Lair");
-                var regiBTN = new ToolStripMenuItem($"Edit Regis");
-                var sojBTN = new ToolStripMenuItem($"Edit Swords of Justice");
-
-
-                var wc8BTN = new ToolStripMenuItem("Convert Wondercard");
-
-                var curryBTN = new ToolStripMenuItem("Edit Currydex/Pokecamp");
-
-                var hlpBTN = new ToolStripMenuItem($"Help");
-
-                main_worldevents.Click += (s, e) => main_worldeventsBTN_Click(s, e);
-
-                ioa_worldevents.Click += (s, e) => ioa_worldeventsBTN_Click(s, e);
-
-                mlBTN.Click += (s, e) => mlBTN_Click(s, e);
-                regiBTN.Click += (s, e) => regiBTN_Click(s, e);
-                sojBTN.Click += (s, e) => sojBTN_Click(s, e);
-                ct_worldevents.Click += (s, e) => ct_worldeventsBTN_Click(s, e);
-
-                curryBTN.Click += (s, e) => curryBTN_Click(s, e);
-                wc8BTN.Click += (s, e) => wc8BTN_Click(s, e);
-
-                hlpBTN.Click += (s, e) => hlpBTN_Click(s, e);
-
-
-
-                crownBTN.DropDownItems.Add(mlBTN);
-                crownBTN.DropDownItems.Add(regiBTN);
-                crownBTN.DropDownItems.Add(sojBTN);
-
-                mainBTN.DropDownItems.Add(main_worldevents);
-                armorBTN.DropDownItems.Add(ioa_worldevents);
-                crownBTN.DropDownItems.Add(ct_worldevents);
-
-
-
-                ctrl.DropDownItems.Add(mainBTN);
-                ctrl.DropDownItems.Add(armorBTN);
-                ctrl.DropDownItems.Add(crownBTN);
-                ctrl.DropDownItems.Add(new ToolStripSeparator());
-                ctrl.DropDownItems.Add(curryBTN);
-                ctrl.DropDownItems.Add(wc8BTN);
-                ctrl.DropDownItems.Add(new ToolStripSeparator());
-                ctrl.DropDownItems.Add(hlpBTN);
-                Console.WriteLine($"{Name} added menu items.");
+            {
+                ctrl.Enabled = true;
             }
             else
             {
@@ -146,7 +143,22 @@ namespace DynamaxAdventureReset
 
         public void NotifySaveLoaded()
         {
-            Console.WriteLine($"{Name} was notified that a Save File was just loaded.");
+            if (SaveFileEditor.SAV.Version == GameVersion.SW || SaveFileEditor.SAV.Version == GameVersion.SH)
+            {
+                if (SaveFileEditor.SAV.Version == GameVersion.SW)
+                {
+                    ctrl.DropDownItems[0].Image = Properties.Resources.sword;
+                }
+                else if (SaveFileEditor.SAV.Version == GameVersion.SH)
+                {
+                    ctrl.DropDownItems[0].Image = Properties.Resources.shield;
+                }
+                ctrl.Enabled = true;
+            }
+            else
+            {
+                ctrl.Enabled = false;
+            }
         }
 
         private void ModifySaveFile()
