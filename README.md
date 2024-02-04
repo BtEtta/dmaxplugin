@@ -1,3 +1,8 @@
+# Notice
+
+This fork was a one-time to get this plugin compiling on the then current version of PKHeX.
+[foohyfooh](https://github.com/foohyfooh) has a more up-to-date version as part of their [PluginPile](https://github.com/foohyfooh/PKHeXPluginPile) repository under the name "Sword/Shield Event Editor"
+
 # Dynamax Plugin (Temp Title)
 
 This is a plugin for PkHex with greatly assists with editng array values quickly and legally.
